@@ -30,7 +30,7 @@ try{
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     print_r($result);
 
-
+//ubah
 }catch(PDOException $e){
     echo "Koneksi gagal: " . $e->getMessage();
 }
