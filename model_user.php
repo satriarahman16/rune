@@ -16,6 +16,7 @@ class User{
         $this->kode_unit = $kode_unit;
         $this->password = $password; 
     }
+    
 
 }
 
