@@ -6,6 +6,7 @@
     <div class="card-header">
       <h3 class="card-title">Tabel User</h3>
     </div>
+
     <div class="card-tambah">
     <a class="text-sky-500
         transition duration-150 ease-in-out 
@@ -14,6 +15,7 @@
     href="<?php echo URL_Helper::createLink('user/user_controller','add',null);?>"
     >Buat User</a>
     </div>
+
     <!-- /.card-header -->
     <div class="card-body">
       <table id="example1" class="table table-bordered table-striped">
