@@ -3,23 +3,20 @@
 
   <!-- Default box -->
   <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between">
     <div>
         <div>
-        <a href="<?php echo URL_Helper::createLink('user/user_controller','add',null);?>" 
-        class="btn btn-primary btn-md" tabindex="-1" role="button" aria-disabled="false">Buat User</a>  
+        <h3 class="card-title text-right">Tabel User</h3>
         </div>
-      <h3 class="card-title"><p class="text-right">Tabel User</p></h3>
- 
     </div>
-
     </div>
-
-
-    
 
     <!-- /.card-header -->
     <div class="card-body">
+      <div>
+        <a href="<?php echo URL_Helper::createLink('user/user_controller','add',null);?>" 
+        class="btn btn-primary btn-md mb-3" tabindex="-1" role="button" aria-disabled="false">Buat User</a>  
+      </div> 
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -43,17 +40,17 @@
             <td class="whitespace-nowrap px-6 py-4"><?php echo $u->password;?></td>
             <td class="whitespace-nowrap px-6 py-4">
                         <a 
-                            class="text-amber-500
-                                    transition duration-150 ease-in-out 
-                                    hover:text-amber-600 focus:text-amber-600 
-                                    active:text-amber-700"                 
+                            class="btn btn-primary btn-md mb-3"           
                             href="<?php echo URL_HELPER::createLink('user/user_controller','update',array('nip'=>$u->nip)) ?>">
-                                Edit
+                            Edit
                         </a>
                         <a 
                             id="hapus"
                             onclick="bukaPopup(this)"
-                            href="<?php echo URL_HELPER::createLink('user/user_controller','delete',array('nip'=>$u->nip)) ?>" >Hapus</a>
+                            class="btn btn-danger btn-md mb-3" 
+                            href="<?php echo URL_HELPER::createLink('user/user_controller','delete',array('nip'=>$u->nip)) ?>">
+                            Hapus
+                        </a>
                     </td>
         </tr>
     <?php
