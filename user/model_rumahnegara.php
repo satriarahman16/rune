@@ -1,5 +1,7 @@
 <?php
-require_once "../koneksi.php";
+if(!defined('BASE_PATH')){
+    require_once '../koneksi.php';
+}
 //abstraksi dari tabel user
 class Aset{
     public $id;
@@ -19,7 +21,7 @@ class Aset{
 
 }
 //berisi fungsi" yang berinteraksi dengan data user
-class ModelAset{
+class ModelRumahNegara{
 // private artinya cuma bisa diakses di kelas tersebut 
     private $conn;
     private function getConnection(){
@@ -29,9 +31,9 @@ class ModelAset{
             $this->conn = $con->getConnection();
         } 
     }
-    public $user;
+    public $aset;
     //method untuk get all user
-    public function getAllAset(){
+    public function getAllUser(){
         //call connection and fetch data
         // $conn = $this->getConnection()
         $this->getConnection();
@@ -43,41 +45,41 @@ class ModelAset{
         $stmt->execute();
         //fetch data
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        //create array of aset
+        //create array of user
         $asets = array();
         foreach($result as $r){
-            //buat object aset untuk tiap row data
-            $aset = new Aset($r['id'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],);
-            //simpan dalam array of aset
+            //buat object user untuk tiap row data
+            $aset = new User($r['id'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],);
+            //simpan dalam array of user
             $asets[] = $aset;
         }
         return $asets;
     }
     // method untuk insert user, dengan satu paramerter, $user_baru adalah objek dari kelas user 
-    public function insertAset($aset_baru){
+    public function insertUser($user_baru){
         //buat objek koneksi
         $this->getConnection();
         //sql
-        $sql = "INSERT INTO aset(id,kode_barang,nama_barang,nup,kode_unit) values(:id,:kode_barang,:nama_barang,:nup,:kode_unit)";
+        $sql = "INSERT INTO users(nip,nama,peran,kode_unit,`password`) values(:nip,:nama,:peran,:kode_unit,:pwd)";
         //prepared stattemnet
         $stmt = $this->conn->prepare($sql);
         //bind param
-        $stmt->bindParam(':id',$aset_baru->id);
-        $stmt->bindParam(':kode_barang',$aset_baru->kode_barang);
-        $stmt->bindParam(':nama_barang',$aset_baru->nama_barang);
-        $stmt->bindParam(':nup',$aset_baru->nup);
-        $stmt->bindParam(':kode_unit',$aset_baru->kode_unit);
+        $stmt->bindParam(':nip',$user_baru->nip);
+        $stmt->bindParam(':nama',$user_baru->nama);
+        $stmt->bindParam(':peran',$user_baru->peran);
+        $stmt->bindParam(':kode_unit',$user_baru->kode_unit);
+        $stmt->bindParam(':pwd',$user_baru->password);
         //eksekusi query
         // print_r($user_baru->kode_unit);
         $stmt->execute();
         
     }
     // method untuk update user
-    public function updateUser($id,$aset_baru){
+    public function updateUser($nip,$user_baru){
             //buat objek koneksi
             $this->getConnection();
             //sql
-            $sql = "UPDATE aset SET nama=:nama, peran=:peran, kode_unit=:kode_unit WHERE nip=:nip";
+            $sql = "UPDATE users SET nip=:nip, nama=:nama, peran=:peran, kode_unit=:kode_unit, password=:pwd WHERE nip=:nip";
             //prepared stattemnet
             $stmt = $this->conn->prepare($sql);
             //bind param
@@ -85,7 +87,7 @@ class ModelAset{
             $stmt->bindParam(':nama',$user_baru->nama);
             $stmt->bindParam(':peran',$user_baru->peran);
             $stmt->bindParam(':kode_unit',$user_baru->kode_unit);
-            $stmt->bindParam(':kode_unit',$user_baru->password);
+            $stmt->bindParam(':pwd',$user_baru->password);
             //eksekusi query
             // print_r($user_baru->kode_unit);
             $stmt->execute();
@@ -132,10 +134,64 @@ class ModelAset{
             return $user;
         }else{
             return null;
-        }
-        
+        } 
     }
     
+//method untuk mencari user dengan kriteria tertentu
+public function findUser($criteria){
+    //criteria berupa array contoh: array('field'=>'NIK','searchvalue'=>'3434')
+    //jika filed berupa array contoh: array('field'=>array('NIK','nama'),'searchvalue'=>'3434')
+    $searchQuery = "";
+    if(is_array($criteria['field'])){
+        $fields = $criteria['field'];
+        for($i=0;$i<count($fields);$i++){
+            $searchQuery .= $fields[$i]." LIKE :searchvalue ";
+            if($i<count($fields)-1){
+                $searchQuery .= 'OR ';
+            }
+        }
+        // foreach($fields as $f){
+        //     $searchQuery .= $f." LIKE :searchvalue OR ";
+        // }
+    }else{
+        $field = $criteria['field'];
+        $searchQuery = $field." LIKE :searchvalue ";
+    }
+    $searchvalue = $criteria['searchvalue'];
+    //call connection and fetch data
+    $this->getConnection();
+    //buat query untuk select all
+    // $sql = "SELECT * FROM user WHERE $field like :searchvalue ";
+    $sql = "SELECT * FROM users WHERE $searchQuery";
+    
+    //jika ada parameter sort
+    // array('field'=>array('NIK','nama'),'searchvalue'=>'3434','sort'=>'nama DESC')
+    if(isset($criteria['sort'])){
+        $sql .= 'ORDER BY '.$criteria['sort'];
+    }
+    //baca criteria limit, offset
+    // if(isset($criteria['limit']) && isset($criteria['offset'])){
+    //     $sql .= ' limit '.$criteria['limit'].' offset '.$criteria['offset'];
+    // }
+
+    // prepare statement
+    $stmt = $this->conn->prepare($sql);
+    //bind param
+    $stmt->bindParam(':searchvalue',$searchvalue);
+    //execute statement
+    $stmt->execute();
+    //fetch data
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //create array of user
+    $users = array();
+    foreach($result as $r){
+        //buat object user untuk tiap row data
+        $user = new User($r['nip'],$r['nama'],$r['peran'],$r['kode_unit'],$r['password']);
+        //simpan dalam array of user
+        $users[] = $user;
+    }
+    return $users;
+}
 }
 
 
