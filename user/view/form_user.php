@@ -1,62 +1,65 @@
-<!-- <?php
-    // print_r($_POST);
-    // cek, apakah ada data yang dikirimkan, atau form yg baru dibuka
-    // include 'model_user.php';
-    // if($_POST){
-    //     echo "ada data yang akan diisi";
-    //     // siapkan data yang akan diisi
-    //     $user_baru = new User($_POST['nip'],$_POST['nama'],$_POST['peran'],$_POST['kode_unit'],$_POST['password']);
-    //     //isi data ke datbase
-    //     // buat objek model user
-    //     $model = new ModelUser();
-    //     // panggil fungsi insertuser
-    //     $model->insertUser($user_baru);
-    //     header('location:ui_user.php');
-    // }else{
-    //     echo"form baru dibuka";
-    // }
-?> -->
+<!-- Main content -->
+<section class="content">
 
+<div class="container-fluid">
 
-<form method ="POST"action="">
-    <table>
-        <!-- nip -->
-        <tr>
-            <td>nip</td>
-            <td>
-                <input type="text" name="nip"/>
-            </td>
-        <!-- nama -->
-        <tr>
-            <td>nama</td>
-            <td>
-                <input type="text" name="nama"/>
-            </td>
-        </tr>
-        <!-- peran -->
-        <tr>
-            <td>peran</td>
-            <td>
-                <input type="text" name="peran"/>
-            </td>
-        </tr>
-        <tr>
-            <td>kode_unit</td>
-            <td>
-                <input type="text" name="kode_unit"/>
-            </td>
-        </tr>
-        <tr>
-            <td>password</td>
-            <td>
-                <input type="password" name="password"/>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" name="submit" values="SIMPAN"/>
-            </td>
-        </tr>        
-    </table>
-</form>
+<div class="row">
+<div class="col-md-6">
+<!-- general form elements -->
+
+<div class="card card-primary">
+
+<div class="card-header">
+    <h3 class="card-title">Tambah User</h3>
+</div>
+
+<!-- /.card-header -->
+ <!-- form start -->
+  <form method="POST" action="">
+    <div class="card-body">
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">NIP</label>
+        <input type="text" class="form-control" name="nip"  placeholder="NIP" value="" >
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nama</label>
+        <input type="text" class="form-control" name="nama"  placeholder="Nama" value="">
+      </div>
+
+      <div class="form-group">
+        <label >Peran</label>
+        <select class="form-control" name="peran">
+            <option selected>--Pilih Peran--</option>
+            <option value="admin">Admin</option>
+            <option value="pengguna">Pengguna</option>
+            <option value="pengelola">Pengelola</option>
+            </select>
+        </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Kode Unit</label>
+        <input type="text" class="form-control" name="kode_unit" placeholder="Kode Unit" value="">
+      </div>
+
+      <div class="form-group">
+         <label for="exampleInputPassword1">Password</label>
+         <input type="password" class="form-control" name="password" placeholder="Password" value="">
+      </div>
+
+    </div>
+
+ <!-- /.card-body -->
+    <div class="card-footer">
+        <button type="submit" name="submit" values="SIMPAN" class="btn btn-primary">Simpan</button>
+    </div>
+
+  <!-- </form>
+</div>
+<!-- /.card -->
+<!-- </div> -->
+
+<!-- /.row -->
+</div><!-- /.container-fluid -->
+

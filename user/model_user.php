@@ -79,7 +79,7 @@ class ModelUser{
             //buat objek koneksi
             $this->getConnection();
             //sql
-            $sql = "UPDATE users SET nama=:nama, peran=:peran, kode_unit=:kode_unit WHERE nip=:nip";
+            $sql = "UPDATE users SET nip=:nip, nama=:nama, peran=:peran, kode_unit=:kode_unit, password=:pwd WHERE nip=:nip";
             //prepared stattemnet
             $stmt = $this->conn->prepare($sql);
             //bind param
@@ -87,7 +87,7 @@ class ModelUser{
             $stmt->bindParam(':nama',$user_baru->nama);
             $stmt->bindParam(':peran',$user_baru->peran);
             $stmt->bindParam(':kode_unit',$user_baru->kode_unit);
-            $stmt->bindParam(':kode_unit',$user_baru->password);
+            $stmt->bindParam(':pwd',$user_baru->password);
             //eksekusi query
             // print_r($user_baru->kode_unit);
             $stmt->execute();

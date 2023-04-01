@@ -4,17 +4,19 @@
   <!-- Default box -->
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Tabel User</h3>
+    <div>
+        <div>
+        <a href="<?php echo URL_Helper::createLink('user/user_controller','add',null);?>" 
+        class="btn btn-primary btn-md" tabindex="-1" role="button" aria-disabled="false">Buat User</a>  
+        </div>
+      <h3 class="card-title"><p class="text-right">Tabel User</p></h3>
+ 
     </div>
 
-    <div class="card-tambah">
-    <a class="text-sky-500
-        transition duration-150 ease-in-out 
-        hover:text-sky-600 focus:text-sky-600 
-        active:text-sky-700" 
-    href="<?php echo URL_Helper::createLink('user/user_controller','add',null);?>"
-    >Buat User</a>
     </div>
+
+
+    
 
     <!-- /.card-header -->
     <div class="card-body">
@@ -51,11 +53,7 @@
                         <a 
                             id="hapus"
                             onclick="bukaPopup(this)"
-                            class="text-red-500
-                                    transition duration-150 ease-in-out 
-                                    hover:text-red-600 focus:text-red-600 
-                                    active:text-red-700"
-                            href="<?php echo URL_HELPER::createLink('user/user_controller','delete',array('nip'=>$u->nip)) ?> ?>" >Hapus</a>
+                            href="<?php echo URL_HELPER::createLink('user/user_controller','delete',array('nip'=>$u->nip)) ?>" >Hapus</a>
                     </td>
         </tr>
     <?php

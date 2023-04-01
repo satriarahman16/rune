@@ -15,6 +15,7 @@
 <!-- Bootstrap 4 -->
 <script src="../rune/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
+<script src="../rune/plugins/sweetalert2.all.min.js"></script>
 <script src="../rune/dist/js/adminlte.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="../rune/plugins/datatables/jquery.dataTables.min.js"></script>

@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../rune/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../rune/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="../rune/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="../rune/plugins/sweetalert2.min.css">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -82,19 +83,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./monitoring.html" class="nav-link">
+                <a href="<?php BASE_PATH.'/view/ui_rumah_negara.php'?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Rumah Negara</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php BASE_PATH.'/view/ui_user.php'?>" class="nav-link active">
+                <a href="<?php BASE_PATH.'/view/ui_user.php'?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./dprn.html" class="nav-link">
+                <a href="<?php BASE_PATH.'/view/ui_penghuni_rn.php'?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar Penghuni RN</p>
                 </a>

@@ -103,7 +103,7 @@ class UserController{
             echo 'user not found';
         }else{
              //cek apakah menampilkan form atau proses form
-            if(isset($_POST['submit'])){
+            if(isset($_POST['submit_update'])){
                 //proses data
                 $user_baru = new User($_POST['nip'],$_POST['nama'],$_POST['peran'],$_POST['kode_unit'],$_POST['password']);
                 //panggil fungsi updateuser
