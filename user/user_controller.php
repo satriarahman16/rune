@@ -14,9 +14,6 @@ class UserController{
         // $act = $_GET['act']??'index';
         // route dari aplikasi
         switch($act){
-            case 'login':
-                $this->login();
-                break;
             case 'index':
                 $this->index();
                 break;
@@ -66,7 +63,7 @@ class UserController{
         $this->loadView('view/ui_user',array('users'=>$users,'pesan'=>'helo','paramCari'=>$paramCari),'Tabel User');
     }
 
-    public function login(){
+    // public function login(){
         /*
         //baca parameter namaCari
         $paramCari = isset($_GET['paramCari'])?$_GET['paramCari']:"";
@@ -90,18 +87,18 @@ class UserController{
         $criteria['offset'] = $offset;
 */
 
-        $nip = $_GET['nip'];
-        $password = $_GET['password'];
-        $result = $this->model->getUserByNipPassword($nip, $password);
+        // $nip = $_GET['nip'];
+        // $password = $_GET['password'];
+        // $result = $this->model->getUserByNipPassword($nip, $password);
      
-        if ($result === 1) {
-            //URL_Helper::redirect('user/user_controller','index',null);
-            echo "login berhasil";
-        } else {
-            //$this->loadView('view/form_login','','');
-            // Jika login gagal, tampilkan pesan error
-            echo "Login gagal. Cek kembali nip dan password anda.";
-        }
+        // if ($result === 1) {
+        //     //URL_Helper::redirect('user/user_controller','index',null);
+        //     echo "login berhasil";
+        // } else {
+        //     //$this->loadView('view/form_login','','');
+        //     // Jika login gagal, tampilkan pesan error
+        //     echo "Login gagal. Cek kembali nip dan password anda.";
+        // }
 /*
         $nip = $_GET['nip'];
         $password = $_GET['password'];
@@ -130,7 +127,7 @@ class UserController{
         }
         //tampilkan data user dlm bentuk tabel
         */
-  }
+//   }
 
 
     //action delete
@@ -202,41 +199,73 @@ class UserController{
         include BASE_PATH.'/user/view/footer.php';
     }
 
-    public function cobalogin($nip, $password){
-        /*
-        //baca parameter namaCari
-        $paramCari = isset($_GET['paramCari'])?$_GET['paramCari']:"";
+    public function login($nip, $password){
 
-        //get all data user
-        // $users = $this->model->getAllUser();
-        // $users = $this->model->findUser(array('field'=>'nama','searchvalue'=>"%$paramCari%"));
-        $criteria = array(
-            'field'=>array('nip','nama','peran','kode_unit','password'),
-            'searchvalue'=>"%$paramCari%",
-            // 'sort' => 'nama DESC'
-        );
-
-        $page = isset($_GET['page'])?$_GET['page']:1;
-        //jumlah data per halaman
-        $perpage = 2;
-        //offset = page * perpage (1->0;2->2;3->4;4->6)
-        $offset = ($page-1) * $perpage;
-
-        $criteria['limit'] = $perpage;
-        $criteria['offset'] = $offset;
-*/
-
-        $nip = $_POST['nip'];
-        $password = $_POST['password'];
+        $nip = $_GET['nip'];
+        $password = $_GET['password'];
         $result = $this->model->getUserByNipPassword($nip, $password);
 
-        if ($result === 1) {
-            $this->loadView('view/ui_user','','Tabel User');
-        } else {
-            // Jika login gagal, tampilkan pesan error
-            echo "Login gagal. Cek kembali nip dan password anda.";
+        if($result == null){
+            echo 'user not found';
+        }else{
+        if(isset($_POST['login'])){
+            URL_Helper::redirect('user/user_controller','index',null);
+        }else {
+            echo "Login gagal.";
+            }
+            
         }
     }
+
+
+        // $nip_diupdate = $_GET['nip'];
+        // //get user berdasarkan id
+        // $user = $this->model->getUserByNip($nip_diupdate);
+        // if($user==null){
+        //     echo 'user not found';
+        // }else{
+        //      //cek apakah menampilkan form atau proses form
+        //     if(isset($_POST['submit_update'])){
+        //         //proses data
+        //         $user_baru = new User($_POST['nip'],$_POST['nama'],$_POST['peran'],$_POST['kode_unit'],$_POST['password']);
+        //         //panggil fungsi updateuser
+        //         $this->model->updateUser($nip_diupdate,$user_baru);
+        //         // header('location:user_controller.php');
+        //         URL_Helper::redirect('user/user_controller','index',null);
+        //     }else{
+        //         $this->loadView('view/form_update',array('user'=>$user),'Ubah User');
+        //     }
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // $nip = $_POST['nip'];
+        // $password = $_POST['password'];
+        // $result = $this->model->getUserByNipPassword($nip, $password);
+
+        // if ($result === 1) {
+        //     $this->loadView('view/ui_user','','Tabel User');
+        // } else {
+        //     // Jika login gagal, tampilkan pesan error
+        //     echo "Login gagal. Cek kembali nip dan password anda.";
+        // }
+
+
+
+
+    
 }
 
 $userController = new UserController();

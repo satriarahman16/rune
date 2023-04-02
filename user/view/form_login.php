@@ -1,3 +1,27 @@
+<?php
+
+if(isset($_POST['login'])){
+    if($_POST['nip'] == '' OR $_POST['password'] == ''){
+        echo "masih ada yang kosong";
+    }else{
+        $nip = $_POST['nip'];
+        $password = $_POST['password'];
+        $login = $conn->query("SELECT * FROM users WHERE nip='$nip' AND  password='$password' ");
+        $login->execute();
+        $data = $login->fetch(PDO::FETCH_ASSOC);
+        if($login->rowCount() > 0 ){
+            echo "sukses";
+        }else{
+            echo"gagal login";
+        }
+    }
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +71,7 @@
     <div class="wrap-login100">
 
 
-        <form method = "POST" class="login100-form validate-form" >
+        <form method = "POST" action="BASE_PATH.'/user/user_controller.php'" class="login100-form validate-form" >
             <img class="imgicon" src="https://sso.kemenkeu.go.id//v2-assets/assets/imgs/kemenkeuid.png">
             <input type="hidden" id="ReturnUrl" name="ReturnUrl" value="/connect/authorize/callback?client_id=new-nadine-satu&amp;redirect_uri=https%3A%2F%2Fsatu.kemenkeu.go.id&amp;response_type=code&amp;scope=openid%20profile%20frontend.nadine%20organisasi.hris%20profil.hris%20jabatan.hris%20pegawai.ekemenkeu%20agenda.ekemenkeu%20agenda.ekemenkeu%20notification.ekemenkeu%20kehumasan&amp;nonce=083f07bf4232fa9287727840e291545262feYe2Yg&amp;state=d4266d4e197fc0c90e8295bdc76704f093QI0QCNA&amp;code_challenge=5JTdjNzy4A-oAuk60KliaK31UwPXNmz4kEiK1Ni2rDQ&amp;code_challenge_method=S256" />
             <fieldset>
@@ -58,10 +82,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="">NIP</label>
                     <input type="text" class="form-control" id="nip" placeholder="Enter NIP"  name="nip" value="langsung klik">
                 </div>
 
                 <div class="form-group">
+                    <label for="">Password</label>
                     <input type="text" class="form-control" id="password" placeholder="Enter Password" name="password" value="login aja">
                 </div>
 
@@ -79,7 +105,7 @@
                 <div class="container-login100-form-btn slideBottom">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button type="submit" name="login" class="login100-form-btn" name="button" value="Login">
+                        <button type="submit" name="login" class="login100-form-btn" name="button" value="login">
                             LOGIN
                         </button>
                     </div>
