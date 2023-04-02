@@ -197,3 +197,4 @@ public function findUser($criteria){
 
 
 ?>
+//END
