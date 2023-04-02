@@ -192,8 +192,52 @@ public function findUser($criteria){
     }
     return $users;
 }
+
+    
+public function getUserByNipPassword($nip, $password){
+    $this->getConnection();
+    // buat query untuk select all
+    $sql = "SELECT nip,password FROM users WHERE nip=:nip AND password=:password";
+    // prepare statement
+    $stmt = $this->conn->prepare($sql);
+    // bind param
+    $stmt->bindParam(':nip',$nip);
+    $stmt->bindParam(':password',$password);
+    // execute statement
+    $stmt->execute();
+    // fetch data
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    
+    // cek apakah ada user dengan id yg dimaksud
+    
+    
+    // if(isset($result['nip']) && password_verify($password, $result['password'])){
+    if(isset($result['nip']) && isset($result['password'])){    
+        //create obj user
+        //$user = new User($result['nip'],$result['nama'],$result['peran'],$result['kode_unit'],$result['password']);
+        $login = 1;
+        return $login;
+    }else{
+        return null;
+    } 
+
+    // if (!isset($_POST['nip'], $_POST['password']) ) {
+    //     // Could not get the data that should have been sent.
+    //     exit('Please fill both the username and password fields!');
+    // }
+
+    // if ($stmt = $con->prepare('SELECT nip, password FROM users WHERE nip=:nip AND password=:password')) {
+    //     // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+    //     $stmt->bindParam(':nip',$nip);
+    //     $stmt->bindParam(':password',$password);
+    //     $stmt->execute();
+    //     // Store the result so we can check if the account exists in the database.
+    //     $stmt->store_result();
+    
+    
+    //     $stmt->close();
+    //     }
+    }
 }
-
-
-
-?>
+    ?>

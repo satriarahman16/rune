@@ -4,7 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD:template/header.php
   <title>Rune | Monitoring Rumah Negara</title>
+=======
+  <title>Rune</title>
+>>>>>>> 38f7c18c60866a38b18ff02e6d61a3a364afcff3:user/view/header.php
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -78,6 +82,7 @@
           </div>
         </div>
 
+<<<<<<< HEAD:template/header.php
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -130,6 +135,46 @@
       </div>
       <!-- /.sidebar -->
     </aside>
+=======
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Monitoring
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php BASE_PATH.'/view/ui_rumahnegara.php'?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rumah Negara</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php BASE_PATH.'/view/ui_user.php'?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php BASE_PATH.'/view/ui_penghuni_rn.php'?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daftar Penghuni RN</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+>>>>>>> 38f7c18c60866a38b18ff02e6d61a3a364afcff3:user/view/header.php
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
