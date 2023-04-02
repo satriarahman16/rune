@@ -10,7 +10,7 @@
 <div class="card card-primary">
 
 <div class="card-header">
-    <h3 class="card-title">Edit User</h3>
+    <h3 class="card-title">Edit Rumah Negara</h3>
 </div>
 
 <!-- /.card-header -->
@@ -19,33 +19,23 @@
     <div class="card-body">
 
       <div class="form-group">
-        <label for="exampleInputEmail1">NIP</label>
-        <input type="text" class="form-control" name="nip" placeholder="NIP" value="<?php echo $user->nip?>">
+        <label for="exampleInputEmail1">Kode Barang</label>
+        <input type="text" class="form-control" name="kode_barang" placeholder="Kode Barang" value="<?php echo $aset->kode_barang?>">
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Nama</label>
-        <input type="text" class="form-control" name="nama" placeholder="Nama" value="<?php echo $user->nama?>">
+        <label for="exampleInputEmail1">Nama Barang</label>
+        <input type="text" class="form-control" name="nama_barang" placeholder="Nama Barang" value="<?php echo $aset->nama_barang?>">
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Peran</label>
-        <select class="form-control" name="peran">
-            <option selected>--Pilih Peran--</option>
-            <option value="admin">Admin</option>
-            <option value="pengguna">Pengguna</option>
-            <option value="pengelola">Pengelola</option>
-            </select>
-        </div>
+        <label for="exampleInputEmail1">NUP</label>
+        <input type="text" class="form-control" name="nup" placeholder="Nama Barang" value="<?php echo $aset->nup?>">
+      </div>
 
       <div class="form-group">
         <label for="exampleInputEmail1">Kode Unit</label>
-        <input type="text" class="form-control" name="kode_unit" placeholder="Kode Unit" value="<?php echo $user->kode_unit?>">
-      </div>
-
-      <div class="form-group">
-         <label for="exampleInputPassword1">Password</label>
-         <input type="password" class="form-control" name="password" placeholder="Password" value="<?php echo $user->password?>">
+        <input type="text" class="form-control" name="kode_unit" placeholder="Kode Unit" value="<?php echo $aset->kode_unit?>">
       </div>
 
     </div>
