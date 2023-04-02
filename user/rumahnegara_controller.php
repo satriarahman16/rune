@@ -1,11 +1,11 @@
 <?php
 // kalau udah dipanggi gk dipanggil lagi
-require_once BASE_PATH.'/user/model_user.php';
-class UserController{
+require_once BASE_PATH.'/user/model_rumahnegara.php';
+class AsetController{
     private $model;
     public function __construct(){
         //buat obj model user
-        $this->model = new ModelUser();
+        $this->model = new ModelAset();
     }
     public function action(){
         //ternary operator
@@ -41,7 +41,7 @@ class UserController{
         // $users = $this->model->getAllUser();
         // $users = $this->model->findUser(array('field'=>'nama','searchvalue'=>"%$paramCari%"));
         $criteria = array(
-            'field'=>array('nip','nama','peran','kode_unit','password'),
+            'field'=>array('id','kode_barang','nama_barang','nup','kode_unit'),
             'searchvalue'=>"%$paramCari%",
             // 'sort' => 'nama DESC'
         );
@@ -57,20 +57,20 @@ class UserController{
         $criteria['limit'] = $perpage;
         $criteria['offset'] = $offset;
 
-        $users = $this->model->findUser($criteria);
+        $asets = $this->model->findAset($criteria);
 
         //tampilkan data user dlm bentuk tabel
-        $this->loadView('view/ui_user',array('users'=>$users,'pesan'=>'helo','paramCari'=>$paramCari),'Tabel User');
+        $this->loadView('view/ui_rumahnegara',array('asets'=>$asets,'pesan'=>'helo','paramCari'=>$paramCari),'Tabel Aset');
     }
 
     //action delete
     public function delete(){
         //baca id yang mau di delete
-        $nip_delete = $_GET['nip'];
-        $status = $this->model->deleteUser($nip_delete);
+        $id_delete = $_GET['id'];
+        $status = $this->model->deleteAset($id_delete);
         if($status){
             // header('location:user_controller.php');
-            URL_Helper::redirect('user/user_controller','index',null);
+            URL_Helper::redirect('user/aset_controller','index',null);
         }
     }
 
@@ -80,38 +80,38 @@ class UserController{
         if(isset($_POST['submit'])){
             //proses data
             //validasi dari sisi server
-            if($_POST['nip']==""||$_POST['nama']==""||$_POST['peran']==""||$_POST['kode_unit']==""||$_POST['password']==""){
+            if($_POST['kode_barang']==""||$_POST['nama_barang']==""||$_POST['nup']==""||$_POST['kode_unit']==""){
                 echo 'DATA INVALID';
             }else{
-                $user_baru = new User($_POST['nip'],$_POST['nama'],$_POST['peran'],$_POST['kode_unit'],$_POST['password']);
+                $aset_baru = new Aset('',$_POST['kode_barang'],$_POST['nama_barang'],$_POST['nup'],$_POST['kode_unit']);
                 //panggil fungsi insertUser
-                $this->model->insertUser($user_baru);
+                $this->model->insertAset($aset_baru);
                 // header('location:user_controller.php');
-                URL_Helper::redirect('user/user_controller','index',null);
+                URL_Helper::redirect('user/rumahnegara_controller','index',null);
             }
         }else{
-            $this->loadView('view/form_user',[],'Add User');
+            $this->loadView('view/form_rumahnegara',[],'Add Rumah Negara');
         }
     }
     //action update
     public function update(){
         //baca parameter id user yang akan diupdate
-        $nip_diupdate = $_GET['nip'];
+        $id_diupdate = $_GET['id'];
         //get user berdasarkan id
-        $user = $this->model->getUserByNip($nip_diupdate);
-        if($user==null){
-            echo 'user not found';
+        $aset = $this->model->getAsetById($id_diupdate);
+        if($aset==null){
+            echo 'aset not found';
         }else{
              //cek apakah menampilkan form atau proses form
             if(isset($_POST['submit_update'])){
                 //proses data
-                $user_baru = new User($_POST['nip'],$_POST['nama'],$_POST['peran'],$_POST['kode_unit'],$_POST['password']);
+                $aset_baru = new Aset('',$_POST['kode_barang'],$_POST['nama_barang'],$_POST['nup'],$_POST['kode_unit']);
                 //panggil fungsi updateuser
-                $this->model->updateUser($nip_diupdate,$user_baru);
+                $this->model->updateAset($id_diupdate,$aset_baru);
                 // header('location:user_controller.php');
-                URL_Helper::redirect('user/user_controller','index',null);
+                URL_Helper::redirect('user/rumahnegara_controller','index',null);
             }else{
-                $this->loadView('view/form_update',array('user'=>$user),'Ubah User');
+                $this->loadView('view/form_update_rumahnegara',array('aset'=>$aset),'Ubah Rumah Negara');
             }
         }
 
@@ -123,7 +123,7 @@ class UserController{
             //membuat variable yang namanya adalah index dari elemen $data
             $$key = $value;
         }
-        $namaModule = 'User';
+        $namaModule = 'Aset';
         $linkModule = 'home';
 
         include BASE_PATH.'/template/header.php';
@@ -133,7 +133,7 @@ class UserController{
     }
 }
 
-$userController = new UserController();
-$userController->action();
+$asetController = new AsetController();
+$asetController->action();
 
 ?>
