@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +47,7 @@
     <div class="wrap-login100">
 
 
-        <form class="login100-form validate-form" action="./monitoring.html">
+        <form method = "POST" class="login100-form validate-form" >
             <img class="imgicon" src="https://sso.kemenkeu.go.id//v2-assets/assets/imgs/kemenkeuid.png">
             <input type="hidden" id="ReturnUrl" name="ReturnUrl" value="/connect/authorize/callback?client_id=new-nadine-satu&amp;redirect_uri=https%3A%2F%2Fsatu.kemenkeu.go.id&amp;response_type=code&amp;scope=openid%20profile%20frontend.nadine%20organisasi.hris%20profil.hris%20jabatan.hris%20pegawai.ekemenkeu%20agenda.ekemenkeu%20agenda.ekemenkeu%20notification.ekemenkeu%20kehumasan&amp;nonce=083f07bf4232fa9287727840e291545262feYe2Yg&amp;state=d4266d4e197fc0c90e8295bdc76704f093QI0QCNA&amp;code_challenge=5JTdjNzy4A-oAuk60KliaK31UwPXNmz4kEiK1Ni2rDQ&amp;code_challenge_method=S256" />
             <fieldset>
@@ -59,11 +58,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="username" placeholder="Enter username"  name="Username" value="langsung klik">
+                    <input type="text" class="form-control" id="nip" placeholder="Enter NIP"  name="nip" value="langsung klik">
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" id="password" placeholder="Enter Password" name="Password" value="login aja">
+                    <input type="text" class="form-control" id="password" placeholder="Enter Password" name="password" value="login aja">
                 </div>
 
                 <!-- <div class="g-recaptcha" data-sitekey="6LcXwJYUAAAAAAJS7MOIfoqPeFP-OuckuPJlBoB8"></div>  -->
@@ -80,7 +79,7 @@
                 <div class="container-login100-form-btn slideBottom">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn" name="button" value="">
+                        <button type="submit" name="login" class="login100-form-btn" name="button" value="Login">
                             LOGIN
                         </button>
                     </div>
@@ -125,77 +124,7 @@
         </div>
 
 
-        <script src="https://sso.kemenkeu.go.id//v2-assets/lib/jquery/jquery.min.js"></script>
-        <script src="https://sso.kemenkeu.go.id//v2-assets/assets/js/main.js"></script>
-        <script src="https://sso.kemenkeu.go.id//v2-assets/lib/bootstrap/js/bootstrap.min.js"></script>
-
-        <script src="https://sso.kemenkeu.go.id//v2-assets/assets/vendors/jqueryui/jquery-ui.min.js"></script>
-        <script src="https://sso.kemenkeu.go.id//v2-assets/assets/js/passwordscheck.js"></script>
-
-        <script type="text/javascript">
-            $(document).on("click", ".Disable2FA", function () {
-                var routeId = $(this).data('id');
-                passFileName("2FAUsername", routeId)
-            });
-
-            $(document).on("click", ".DeleteModalG2B", function () {
-                var routeId = $(this).data('id');
-                passFileName("fileNameG2B", routeId)
-            });
-            $(document).on("click", ".DeleteModalG2G", function () {
-                var routeId = $(this).data('id');
-                passFileName("fileNameG2G", routeId)
-            });
-            $(document).on("click", ".DeleteModalG2C", function () {
-                var routeId = $(this).data('id');
-                passFileName("fileNameG2C", routeId)
-            });
-
-            $(document).on("click", ".UploadModalG2B", function () {
-                var types = $(this).data('id');
-                var total = types.length;
-                DynOption("fileTypeG2B", types, total)
-            });
-            $(document).on("click", ".UploadModalG2G", function () {
-                var types = $(this).data('id');
-                var total = types.length;
-                DynOption("fileTypeG2G", types, total)
-            });
-            $(document).on("click", ".UploadModalG2C", function () {
-                var types = $(this).data('id');
-                var total = types.length;
-                DynOption("fileTypeG2C", types, total)
-            });
-
-            function passFileName(idTag, routeId) {
-                var selector = ".modal-body #" + idTag;
-                $(selector).val(routeId);
-            }
-
-            function DynOption(idTag, types, total = 0) {
-                if (total != 0) {
-                    select = document.getElementById(idTag);
-                    var selector = "#" + idTag;
-                    $(selector).empty();
-                    types.forEach(function (item, index) {
-                        var opt = document.createElement('option');
-                        opt.value = item;
-                        opt.innerHTML = item;
-                        select.appendChild(opt);
-                    });
-                }
-            }
-        </script>
-
-        
-    <script src="https://apigateway.kemenkeu.go.id/gateway/GoogleReCaptcha/1.0/api.js?render=6Lf8fdAcAAAAACbjp05gwz5hsUtkE2ETfvP_yEF-"></script>
-    <script>
-        grecaptcha.ready(function() {
-            window.grecaptcha.execute('6Lf8fdAcAAAAACbjp05gwz5hsUtkE2ETfvP_yEF-', { action: 'NewAccount/ExternalRegistration' }).then(function (token) {
-                $("#captchaInputLogin").val(token);
-            });
-        });
-    </script>
+   
 
     </div>
 </body>

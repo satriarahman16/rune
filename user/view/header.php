@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rune | Lupa kepanjangannya</title>
+  <title>Rune</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -83,7 +83,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php BASE_PATH.'/view/ui_rumah_negara.php'?>" class="nav-link">
+                <a href="<?php BASE_PATH.'/view/ui_rumahnegara.php'?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Rumah Negara</p>
                 </a>

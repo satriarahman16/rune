@@ -126,10 +126,10 @@ class AsetController{
         $namaModule = 'Aset';
         $linkModule = 'home';
 
-        include BASE_PATH.'/template/header.php';
+        include BASE_PATH.'/user/view/header.php';
         // include BASE_PATH.'/user/view/ui_user.php';
         include BASE_PATH.'/user/'.$file.'.php';
-        include BASE_PATH.'/template/footer.php';
+        include BASE_PATH.'/user/view/footer.php';
     }
 }
 
