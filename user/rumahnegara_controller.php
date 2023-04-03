@@ -17,10 +17,6 @@ class AsetController{
             case 'index':
                 $this->index();
                 break;
-            case 'add':
-                $this->create();
-                // include 'form_user.php';
-                break;
             case 'delete':
                 $this->delete();
                 break;
@@ -41,7 +37,7 @@ class AsetController{
         // $users = $this->model->getAllUser();
         // $users = $this->model->findUser(array('field'=>'nama','searchvalue'=>"%$paramCari%"));
         $criteria = array(
-            'field'=>array('id','kode_barang','nama_barang','nup','kode_unit'),
+            'field'=>array('id_aset','kode_barang','nama_barang','nup','kode_unit','status_validasi'),
             'searchvalue'=>"%$paramCari%",
             // 'sort' => 'nama DESC'
         );
@@ -66,7 +62,7 @@ class AsetController{
     //action delete
     public function delete(){
         //baca id yang mau di delete
-        $id_delete = $_GET['id'];
+        $id_delete = $_GET['id_aset'];
         $status = $this->model->deleteAset($id_delete);
         if($status){
             // header('location:user_controller.php');
@@ -74,29 +70,10 @@ class AsetController{
         }
     }
 
-    //action add
-    public function create(){
-        //cek apakah menampilkan form atau proses form
-        if(isset($_POST['submit'])){
-            //proses data
-            //validasi dari sisi server
-            if($_POST['kode_barang']==""||$_POST['nama_barang']==""||$_POST['nup']==""||$_POST['kode_unit']==""){
-                echo 'DATA INVALID';
-            }else{
-                $aset_baru = new Aset('',$_POST['kode_barang'],$_POST['nama_barang'],$_POST['nup'],$_POST['kode_unit']);
-                //panggil fungsi insertUser
-                $this->model->insertAset($aset_baru);
-                // header('location:user_controller.php');
-                URL_Helper::redirect('user/rumahnegara_controller','index',null);
-            }
-        }else{
-            $this->loadView('view/form_rumahnegara',[],'Add Rumah Negara');
-        }
-    }
     //action update
     public function update(){
         //baca parameter id user yang akan diupdate
-        $id_diupdate = $_GET['id'];
+        $id_diupdate = $_GET['id_aset'];
         //get user berdasarkan id
         $aset = $this->model->updateAset($id_diupdate);
         // if($aset==null){
