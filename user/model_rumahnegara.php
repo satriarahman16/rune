@@ -9,13 +9,15 @@ class Aset{
     public $nama_barang;
     public $nup;
     public $kode_unit;
+    public $status_validasi;
 
-    public function __construct($id,$kode_barang,$nama_barang,$nup,$kode_unit){
+    public function __construct($id,$kode_barang,$nama_barang,$nup,$kode_unit,$status_validasi){
         $this->id = $id;
         $this->kode_barang = $kode_barang;
         $this->nama_barang = $nama_barang;
         $this->nup = $nup;
-        $this->kode_unit = $kode_unit; 
+        $this->kode_unit = $kode_unit;
+        $this->status_validasi = $status_validasi; 
     }
     
 
@@ -38,7 +40,7 @@ class ModelAset{
         // $conn = $this->getConnection()
         $this->getConnection();
         //buat query untuk select all
-        $sql = "SELECT * FROM aset";
+        $sql = "SELECT * FROM aset LEFT JOIN validasi ON validasi.id_validasi=aset.id_validasi";
         //prepare statement
         $stmt = $this->conn->prepare($sql);
         //execute statement
@@ -49,7 +51,7 @@ class ModelAset{
         $asets = array();
         foreach($result as $r){
             //buat object user untuk tiap row data
-            $aset = new Aset($r['id'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],);
+            $aset = new Aset($r['id'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],$r['status_validasi']);
             //simpan dalam array of user
             $asets[] = $aset;
         }
@@ -74,19 +76,16 @@ class ModelAset{
         
     }
     // method untuk update user
-    public function updateAset($nip,$aset_baru){
+    public function updateAset($id){
             //buat objek koneksi
             $this->getConnection();
             //sql
-            $sql = "UPDATE aset SET kode_barang=:kode_barang, nama_barang=:nama_barang, nup=:nup, kode_unit=:kode_unit WHERE id=:id";
+            $sql = "UPDATE aset SET id_validasi=:id_validasi WHERE id=:id";
             //prepared stattemnet
             $stmt = $this->conn->prepare($sql);
             //bind param
-            $stmt->bindParam(':kode_barang',$aset_baru->kode_barang);
-            $stmt->bindParam(':nama_barang',$aset_baru->nama_barang);
-            $stmt->bindParam(':nup',$aset_baru->nup);
-            $stmt->bindParam(':kode_unit',$aset_baru->kode_unit);
-            $stmt->bindParam(':id',$id);
+            $stmt->bindParam(':id',$id->id);
+            $stmt->bindParam(':id_validasi',$id->id_validasi);
             //eksekusi query
             // print_r($user_baru->kode_unit);
             $stmt->execute();
@@ -161,7 +160,7 @@ public function findAset($criteria){
     $this->getConnection();
     //buat query untuk select all
     // $sql = "SELECT * FROM user WHERE $field like :searchvalue ";
-    $sql = "SELECT * FROM aset WHERE $searchQuery";
+    $sql = "SELECT * FROM aset LEFT JOIN validasi ON validasi.id_validasi=aset.id_validasi WHERE $searchQuery";
     
     //jika ada parameter sort
     // array('field'=>array('NIK','nama'),'searchvalue'=>'3434','sort'=>'nama DESC')
@@ -185,7 +184,7 @@ public function findAset($criteria){
     $asets = array();
     foreach($result as $r){
         //buat object user untuk tiap row data
-        $aset = new Aset($r['id'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit']);
+        $aset = new Aset($r['id'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],$r['status_validasi']);
         //simpan dalam array of user
         $asets[] = $aset;
     }

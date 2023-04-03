@@ -1,21 +1,17 @@
 <!-- Main content -->
 <section class="content">
 
+
+
   <!-- Default box -->
   <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between">
     <div>
         <div>
-        <a href="<?php echo URL_Helper::createLink('user/rumahnegara_controller','add',null);?>" 
-        class="btn btn-primary btn-md" tabindex="-1" role="button" aria-disabled="false">Buat Rumah Negara</a>  
+        <h3 class="card-title text-right">Tabel Rumah Negara</h3>
         </div>
-      <h3 class="card-title"><p class="text-right">Tabel Rumah Negara</p></h3>
- 
     </div>
-
     </div>
-
-
     
     <!-- /.card-header -->
     <div class="card-body">
@@ -26,6 +22,7 @@
         <th>Nama Barang</th>
         <th>NUP</th>
         <th>Kode Unit</th>
+        <th>Status Validasi</th>
         <th>Aksi</th>
         </tr>
         </thead>
@@ -38,23 +35,86 @@
             <td class="whitespace-nowrap px-6 py-4"><?php echo $u->nama_barang;?></td>
             <td class="whitespace-nowrap px-6 py-4"><?php echo $u->nup;?></td>
             <td class="whitespace-nowrap px-6 py-4"><?php echo $u->kode_unit;?></td>
+            <td class="whitespace-nowrap px-6 py-4"><?php echo $u->status_validasi;?></td>
             <td class="whitespace-nowrap px-6 py-4">
-                        <a 
-                            class="text-amber-500
-                                    transition duration-150 ease-in-out 
-                                    hover:text-amber-600 focus:text-amber-600 
-                                    active:text-amber-700"                 
-                            href="<?php echo URL_HELPER::createLink('user/rumahnegara_controller','update',array('id'=>$u->id)) ?>">
-                                Edit
-                        </a>
-                        <a 
-                            id="hapus"
-                            onclick="bukaPopup(this)"
-                            href="<?php echo URL_HELPER::createLink('user/user_controller','delete',array('id'=>$u->id)) ?>" >
-                            Hapus
-                        </a>
-                    </td>
-        </tr>
+           
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Validasi</button>
+                  <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal2">Detail Rumah Negara</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal3">Detail Relasi Tanah</a>
+                  </div>
+                </div>
+              
+                </td>
+        
+            </tr>
+
+        <!-- Modal Validasi-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apakah Aset Rumah Negara ini Datanya sudah valid?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <button type="button" class="btn btn-success">Valid</button>
+        <button type="button" class="btn btn-danger">Tidak Valid</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+   <!-- Modal Detail RN-->
+   <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+   <!-- Modal Detail Relasi Tanah-->
+   <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
     <?php
         }
     ?>

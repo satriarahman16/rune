@@ -98,22 +98,22 @@ class AsetController{
         //baca parameter id user yang akan diupdate
         $id_diupdate = $_GET['id'];
         //get user berdasarkan id
-        $aset = $this->model->getAsetById($id_diupdate);
-        if($aset==null){
-            echo 'aset not found';
-        }else{
-             //cek apakah menampilkan form atau proses form
-            if(isset($_POST['submit_update'])){
-                //proses data
-                $aset_baru = new Aset('',$_POST['kode_barang'],$_POST['nama_barang'],$_POST['nup'],$_POST['kode_unit']);
-                //panggil fungsi updateuser
-                $this->model->updateAset($id_diupdate,$aset_baru);
-                // header('location:user_controller.php');
-                URL_Helper::redirect('user/rumahnegara_controller','index',null);
-            }else{
-                $this->loadView('view/form_update_rumahnegara',array('aset'=>$aset),'Ubah Rumah Negara');
-            }
-        }
+        $aset = $this->model->updateAset($id_diupdate);
+        // if($aset==null){
+        //     echo 'aset not found';
+        // }else{
+        //      //cek apakah menampilkan form atau proses form
+        //     if(isset($_POST['submit_update'])){
+        //         //proses data
+        //         $aset_baru = new Aset('',$_POST['kode_barang'],$_POST['nama_barang'],$_POST['nup'],$_POST['kode_unit']);
+        //         //panggil fungsi updateuser
+        //         $this->model->updateAset($id_diupdate,$aset_baru);
+        //         // header('location:user_controller.php');
+        //         URL_Helper::redirect('user/rumahnegara_controller','index',null);
+        //     }else{
+        //         $this->loadView('view/form_update_rumahnegara',array('aset'=>$aset),'Ubah Rumah Negara');
+        //     }
+        // }
 
     }
 

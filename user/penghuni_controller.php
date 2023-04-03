@@ -90,7 +90,7 @@ class UserController{
             // Jika login gagal, tampilkan pesan error
             $message = "User atau Password Salah";
             echo "<script type='text/javascript'>alert('$message');";
-            echo "window.location.href = "; BASE_PATH; echo "</script>";
+            echo "window.location.href = 'http://localhost/rumah_negara/rune/';</script>";
             // $message = "User atau Password Salah";
             // echo $message;
             // header('Refresh: 2; url=http://localhost/rumah_negara/rune/');

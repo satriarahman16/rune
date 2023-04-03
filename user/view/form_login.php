@@ -1,29 +1,8 @@
-<?php
-
-if(isset($_POST['submit_login'])){
-    if($_POST['nip'] == '' OR $_POST['password'] == ''){
-        echo "masih ada yang kosong";
-    }else{
-        $nip = $_POST['nip'];
-        $password = $_POST['password'];
-        $login = $conn->query("SELECT * FROM users WHERE nip='$nip' AND  password='$password' ");
-        $login->execute();
-        $data = $login->fetch(PDO::FETCH_ASSOC);
-        if($login->rowCount() > 0 ){
-            echo "sukses";
-        }else{
-            echo"gagal login";
-        }
-    }
-}
-
-?>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <title>KemenkeuID</title>
+    <title>RUNE</title>
     <link rel="icon" type="image/x-icon" href="https://sso.kemenkeu.go.id//v2-assets/assets/imgs/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="https://sso.kemenkeu.go.id//v2-assets/assets/imgs/favicon.ico" />
     <link rel="stylesheet" href="https://sso.kemenkeu.go.id//v2-assets/lib/bootstrap/css/bootstrap.min.css" />
@@ -41,7 +20,7 @@ if(isset($_POST['submit_login'])){
 <div class="row">
 <div class="col-md-6">
 
-<form method="POST" action="">
+<form method="POST" action="<?php echo URL_HELPER::createLink('user/user_controller','login','') ?>">
     <div class="card-body">
 
     <h1>Login</h1>
@@ -57,7 +36,7 @@ if(isset($_POST['submit_login'])){
       </div>
 
       <div class="card-footer">
-        <button type="submit" name="submit_login" values="SIMPAN" class="btn btn-primary">LOGIN</button>
+        <button type="submit" name="login" values="SIMPAN" class="btn btn-primary">LOGIN</button>
     </div>
 
     </div>
