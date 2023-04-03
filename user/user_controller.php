@@ -80,17 +80,17 @@ class UserController{
         $nip = $_POST['nip'];
         $password = $_POST['password'];
         $result = $this->model->getUserByNipPassword($nip, $password);
+        
      
+      
         if ($result) {
-            URL_Helper::redirect('user/user_controller','index',null);
             // echo "login berhasil";
+            URL_Helper::redirect('user/user_controller','index',null);
         } else {
             // URL_Helper::redirect('user/view/form_update','index',null);
             //$this->loadView('view/form_login','','');
             // Jika login gagal, tampilkan pesan error
-            $message = "User atau Password Salah";
-            echo "<script type='text/javascript'>alert('$message');";
-            echo "window.location.href = "; BASE_PATH; echo "</script>";
+            URL_Helper::redirect('user/view/form_login','',array('error'=>TRUE));
             // $message = "User atau Password Salah";
             // echo $message;
             // header('Refresh: 2; url=http://localhost/rumah_negara/rune/');
@@ -99,6 +99,8 @@ class UserController{
             // URL_Helper::redirect('user/view/form_login','',null);
             // echo "Login gagal. Cek kembali nip dan password anda.";
         }
+
+        
     }
         /*
         //baca parameter namaCari

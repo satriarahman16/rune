@@ -13,17 +13,18 @@
 </head>
 
 
-<section class="content">
+<section class="content" >
 
 <div class="container-fluid">
 
-<div class="row">
-<div class="col-md-6">
+<div class="d-flex">
+<div class="col-md-4 col-md-offset-4">
 
 <form method="POST" action="<?php echo URL_HELPER::createLink('user/user_controller','login','') ?>">
+<img class="imgicon" src="https://img.icons8.com/dotty/512/home-page.png">
     <div class="card-body">
 
-    <h1>Login</h1>
+    <h1>Login RUNE</h1>
 
       <div class="form-group">
         <label for="exampleInputEmail1">NIP</label>
@@ -32,7 +33,7 @@
 
       <div class="form-group">
         <label for="exampleInputEmail1">Password</label>
-        <input type="password" class="form-control" name="password"  placeholder="Nama" value="">
+        <input type="password" class="form-control" name="password"  placeholder="password" value="">
       </div>
 
       <div class="card-footer">
@@ -48,7 +49,14 @@
   </div>
   </div>
       
-
+  <?php
+    $error = $_GET['error'];
+    
+    if (isset($error) && $error) {
+        $message = "NIP atau Password Salah";
+        echo "<script>document.body.onload = () => {alert('$message')}</script>";
+    }
+  ?>
 
 <!-- 
 <!DOCTYPE html>
