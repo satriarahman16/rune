@@ -8,7 +8,9 @@ $dbpass = '';
 //host database
 $dbhost = 'localhost';
 //base url
-$base_url = "http://localhost/rumah_negara/rune/";
+//$base_url = "http://localhost/rumah_negara/rune/";
+//$base_url = "";
+$base_url = "../rune/";
 
 $_ENV['DEV'] = getenv('DEV');
 

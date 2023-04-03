@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +65,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-   <?php $hosting = "http://localhost/rumah_negara/rune/"?>
+   <?php $hosting = "../rune/"?>
 
 
       <!-- Sidebar -->

@@ -4,15 +4,15 @@ if(!defined('BASE_PATH')){
 }
 //abstraksi dari tabel user
 class Aset{
-    public $id;
+    public $id_aset;
     public $kode_barang;
     public $nama_barang;
     public $nup;
     public $kode_unit;
     public $status_validasi;
 
-    public function __construct($id,$kode_barang,$nama_barang,$nup,$kode_unit,$status_validasi){
-        $this->id = $id;
+    public function __construct($id_aset,$kode_barang,$nama_barang,$nup,$kode_unit,$status_validasi){
+        $this->id_aset = $id_aset;
         $this->kode_barang = $kode_barang;
         $this->nama_barang = $nama_barang;
         $this->nup = $nup;
@@ -40,7 +40,7 @@ class ModelAset{
         // $conn = $this->getConnection()
         $this->getConnection();
         //buat query untuk select all
-        $sql = "SELECT * FROM aset LEFT JOIN validasi ON validasi.id_validasi=aset.id_validasi";
+        $sql = "SELECT * FROM t_aset LEFT JOIN r_validasi ON r_validasi.id_validasi=t_aset.id_validasi WHERE LEFT(t_aset.kode_barang,1)='3'";
         //prepare statement
         $stmt = $this->conn->prepare($sql);
         //execute statement
@@ -51,84 +51,51 @@ class ModelAset{
         $asets = array();
         foreach($result as $r){
             //buat object user untuk tiap row data
-            $aset = new Aset($r['id'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],$r['status_validasi']);
+            $aset = new Aset($r['id_aset'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],$r['status_validasi']);
             //simpan dalam array of user
             $asets[] = $aset;
         }
         return $asets;
     }
     // method untuk insert user, dengan satu paramerter, $user_baru adalah objek dari kelas user 
-    public function insertAset($aset_baru){
+    
+
+    // method untuk update user
+    public function updateAset($id_aset){
         //buat objek koneksi
         $this->getConnection();
         //sql
-        $sql = "INSERT INTO aset(kode_barang,nama_barang,nup,kode_unit) values(:kode_barang,:nama_barang,:nup,:kode_unit,:kode_unit)";
+        $sql = "UPDATE t_aset SET id_validasi=:id_validasi WHERE id_aset=:id";
         //prepared stattemnet
         $stmt = $this->conn->prepare($sql);
         //bind param
-        $stmt->bindParam(':kode_barang',$aset_baru->kode_barang);
-        $stmt->bindParam(':nama_barang',$aset_baru->nama_barang);
-        $stmt->bindParam(':nup',$aset_baru->nup);
-        $stmt->bindParam(':kode_unit',$aset_baru->kode_unit);
+        $stmt->bindParam(':id',$id_aset->id_aset);
+        $stmt->bindParam(':id_validasi',$id_aset->id_validasi);
         //eksekusi query
         // print_r($user_baru->kode_unit);
         $stmt->execute();
-        
-    }
-    // method untuk update user
-    public function updateAset($id){
-            //buat objek koneksi
-            $this->getConnection();
-            //sql
-            $sql = "UPDATE aset SET id_validasi=:id_validasi WHERE id=:id";
-            //prepared stattemnet
-            $stmt = $this->conn->prepare($sql);
-            //bind param
-            $stmt->bindParam(':id',$id->id);
-            $stmt->bindParam(':id_validasi',$id->id_validasi);
-            //eksekusi query
-            // print_r($user_baru->kode_unit);
-            $stmt->execute();
 
-    }
+}
     // method untuk delete user
-    public function deleteAset($id_dihapus){
-        //buat objek koneksi
-        $conn = new Connection();
-        //sql
-        $sql = "DELETE FROM aset WHERE id=:id";
-        try{
-            //prepared stattemnet
-            $stmt = $conn->getConnection()->prepare($sql);
-            //bind param
-            $stmt->bindParam(':id',$id_dihapus);
-            $stmt->execute();
-            return true;
-        }catch(Exception $e){
-            echo 'gagal hapus data';
-            return false;
-        }
-        
-
-    }    
+    
     // method untuk get user by id
-    public function getAsetById($id){
+    public function getAsetById($id_aset){
         $this->getConnection();
         //buat query untuk select all
-        $sql = "SELECT * FROM aset WHERE id=:id";
+        $sql = "SELECT * FROM t_aset WHERE id_aset=:id";
         //prepare statement
         $stmt = $this->conn->prepare($sql);
         // bind param
-        $stmt->bindParam(':id',$id);
+        $stmt->bindParam(':id',$id_aset);
         //execute statement
         $stmt->execute();
         //fetch data
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         // cek apakah ada user dengan id yg dimaksud
         
-        if(isset($result['id'])){
+        if(isset($result['id_aset'])){
             //create obj user
-            $aset = new Aset($result['id'],$result['kode_barang'],$result['nama_barang'],$result['nup'],$result['kode_unit']);
+            $aset = new Aset($result['id_aset'],$result['kode_barang'],$result['nama_barang'],$result['nup'],$result['kode_unit'],$result['status_validasi']);
             return $aset;
         }else{
             return null;
@@ -160,7 +127,7 @@ public function findAset($criteria){
     $this->getConnection();
     //buat query untuk select all
     // $sql = "SELECT * FROM user WHERE $field like :searchvalue ";
-    $sql = "SELECT * FROM aset LEFT JOIN validasi ON validasi.id_validasi=aset.id_validasi WHERE $searchQuery";
+    $sql = "SELECT * FROM t_aset LEFT JOIN r_validasi ON r_validasi.id_validasi=t_aset.id_validasi WHERE LEFT(t_aset.kode_barang,1)='3' AND ($searchQuery)";
     
     //jika ada parameter sort
     // array('field'=>array('NIK','nama'),'searchvalue'=>'3434','sort'=>'nama DESC')
@@ -184,7 +151,7 @@ public function findAset($criteria){
     $asets = array();
     foreach($result as $r){
         //buat object user untuk tiap row data
-        $aset = new Aset($r['id'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],$r['status_validasi']);
+        $aset = new Aset($r['id_aset'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],$r['status_validasi']);
         //simpan dalam array of user
         $asets[] = $aset;
     }
