@@ -70,7 +70,7 @@ class PenghuniController{
             //membuat variable yang namanya adalah index dari elemen $data
             $$key = $value;
         }
-        $namaModule = 'User';
+        $namaModule = 'Penghuni';
         $linkModule = 'home';
 
         include BASE_PATH.'/user/view/header.php';

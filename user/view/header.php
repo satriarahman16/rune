@@ -137,7 +137,11 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-
+            <div class="col-sm-6">
+              <a class="btn btn-danger" href="<?php echo $hosting ?>index.php?mod=user/view/form_login&act="?>Logout</a>
+                <!-- <button type="button" class="btn btn-danger" href="<?php echo $hosting ?>index.php?mod=user/view/form_login&act="?> Logout</button> -->
+            </div>
+              
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
