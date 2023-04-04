@@ -38,7 +38,7 @@ class ModelUser{
         // $conn = $this->getConnection()
         $this->getConnection();
         //buat query untuk select all
-        $sql = "SELECT * FROM t_user";
+        $sql = "SELECT * FROM r_user";
         //prepare statement
         $stmt = $this->conn->prepare($sql);
         //execute statement
@@ -60,7 +60,7 @@ class ModelUser{
         //buat objek koneksi
         $this->getConnection();
         //sql
-        $sql = "INSERT INTO t_user(nip,nama,peran,kode_unit,`password`) values(:nip,:nama,:peran,:kode_unit,:pwd)";
+        $sql = "INSERT INTO r_user(nip,nama,peran,kode_unit,`password`) values(:nip,:nama,:peran,:kode_unit,:pwd)";
         //prepared stattemnet
         $stmt = $this->conn->prepare($sql);
         //bind param
@@ -79,7 +79,7 @@ class ModelUser{
             //buat objek koneksi
             $this->getConnection();
             //sql
-            $sql = "UPDATE t_user SET nip=:nip, nama=:nama, peran=:peran, kode_unit=:kode_unit, password=:pwd WHERE nip=:nip";
+            $sql = "UPDATE r_user SET nip=:nip, nama=:nama, peran=:peran, kode_unit=:kode_unit, password=:pwd WHERE nip=:nip";
             //prepared stattemnet
             $stmt = $this->conn->prepare($sql);
             //bind param
@@ -98,7 +98,7 @@ class ModelUser{
         //buat objek koneksi
         $conn = new Connection();
         //sql
-        $sql = "DELETE FROM t_user WHERE nip=:nip";
+        $sql = "DELETE FROM r_user WHERE nip=:nip";
         try{
             //prepared stattemnet
             $stmt = $conn->getConnection()->prepare($sql);
@@ -117,7 +117,7 @@ class ModelUser{
     public function getUserByNip($nip){
         $this->getConnection();
         //buat query untuk select all
-        $sql = "SELECT * FROM t_user WHERE nip=:nip";
+        $sql = "SELECT * FROM r_user WHERE nip=:nip";
         //prepare statement
         $stmt = $this->conn->prepare($sql);
         // bind param
@@ -162,7 +162,7 @@ public function findUser($criteria){
     $this->getConnection();
     //buat query untuk select all
     // $sql = "SELECT * FROM user WHERE $field like :searchvalue ";
-    $sql = "SELECT * FROM t_user WHERE $searchQuery";
+    $sql = "SELECT * FROM r_user WHERE $searchQuery";
     
     //jika ada parameter sort
     // array('field'=>array('NIK','nama'),'searchvalue'=>'3434','sort'=>'nama DESC')
@@ -197,7 +197,7 @@ public function findUser($criteria){
 public function getUserByNipPassword($nip, $password){
     $this->getConnection();
 //     // buat query untuk select all
-    $sql = "SELECT nip,password FROM t_user WHERE nip=:nip AND password=:pwd";
+    $sql = "SELECT nip,password FROM r_user WHERE nip=:nip AND password=:pwd";
 //     // prepare statement
     $stmt = $this->conn->prepare($sql);
 //     // bind param
