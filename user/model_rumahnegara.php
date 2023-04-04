@@ -10,14 +10,27 @@ class Aset{
     public $nup;
     public $kode_unit;
     public $status_validasi;
+    public $alamat;
+    public $lat_long;
+    public $status_penggunaan;
+    public $kondisi;
+    public $luas_rn;
 
-    public function __construct($id_aset,$kode_barang,$nama_barang,$nup,$kode_unit,$status_validasi){
+
+    public function __construct($id_aset,$kode_barang,$nama_barang,$nup,$kode_unit,
+                                $status_validasi,
+                                $alamat,$lat_long,$status_penggunaan,$kondisi,$luas_rn){
         $this->id_aset = $id_aset;
         $this->kode_barang = $kode_barang;
         $this->nama_barang = $nama_barang;
         $this->nup = $nup;
         $this->kode_unit = $kode_unit;
-        $this->status_validasi = $status_validasi; 
+        $this->status_validasi = $status_validasi;
+        $this->alamat = $alamat;
+        $this->lat_long = $lat_long; 
+        $this->status_penggunaan = $status_penggunaan;
+        $this->kondisi = $kondisi;
+        $this->luas_rn = $luas_rn;
     }
     
 
@@ -40,7 +53,10 @@ class ModelAset{
         // $conn = $this->getConnection()
         $this->getConnection();
         //buat query untuk select all
-        $sql = "SELECT * FROM t_aset LEFT JOIN r_validasi ON r_validasi.id_validasi=t_aset.id_validasi WHERE LEFT(t_aset.kode_barang,1)='3'";
+        $sql = "SELECT * FROM t_aset 
+                LEFT JOIN t_rn_detail ON t_rn_detail.id_aset=t_aset.id_aset
+                LEFT JOIN r_validasi ON r_validasi.id_validasi=t_aset.id_validasi 
+                WHERE LEFT(t_aset.kode_barang,1)='3'";
         //prepare statement
         $stmt = $this->conn->prepare($sql);
         //execute statement
@@ -51,7 +67,9 @@ class ModelAset{
         $asets = array();
         foreach($result as $r){
             //buat object user untuk tiap row data
-            $aset = new Aset($r['id_aset'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],$r['status_validasi']);
+            $aset = new Aset($r['id_aset'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],
+                             $r['status_validasi'],
+                             $r['alamat'],$r['lat_long'],$r['status_penggunaan'],$r['kondisi'],$r['luas_rn']);
             //simpan dalam array of user
             $asets[] = $aset;
         }
@@ -61,15 +79,15 @@ class ModelAset{
     
 
     // method untuk update user
-    public function updateAset($id_aset){
+    public function updateAset($id_aset,$validasi_baru){
         //buat objek koneksi
         $this->getConnection();
         //sql
-        $sql = "UPDATE t_aset SET id_validasi=:id_validasi WHERE id_aset=:id";
+        $sql = "UPDATE t_aset SET id_validasi=:id_validasi WHERE id_aset=:id_aset";
         //prepared stattemnet
         $stmt = $this->conn->prepare($sql);
         //bind param
-        $stmt->bindParam(':id',$id_aset->id_aset);
+        $stmt->bindParam(':id_aset',$id_aset->id_aset);
         $stmt->bindParam(':id_validasi',$id_aset->id_validasi);
         //eksekusi query
         // print_r($user_baru->kode_unit);
@@ -82,7 +100,10 @@ class ModelAset{
     public function getAsetById($id_aset){
         $this->getConnection();
         //buat query untuk select all
-        $sql = "SELECT * FROM t_aset WHERE id_aset=:id";
+        $sql = "SELECT * FROM t_aset 
+                LEFT JOIN t_rn_detail ON t_rn_detail.id_aset=t_aset.id_aset
+                LEFT JOIN r_validasi ON r_validasi.id_validasi=t_aset.id_validasi
+                WHERE t_aset.id_aset=:id";
         //prepare statement
         $stmt = $this->conn->prepare($sql);
         // bind param
@@ -95,7 +116,9 @@ class ModelAset{
         
         if(isset($result['id_aset'])){
             //create obj user
-            $aset = new Aset($result['id_aset'],$result['kode_barang'],$result['nama_barang'],$result['nup'],$result['kode_unit'],$result['status_validasi']);
+            $aset = new Aset($result['id_aset'],$result['kode_barang'],$result['nama_barang'],$result['nup'],$result['kode_unit'],
+                             $result['status_validasi'],
+                             $result['alamat'],$result['lat_long'],$result['status_penggunaan'],$result['kondisi'],$result['luas_rn']);
             return $aset;
         }else{
             return null;
@@ -127,7 +150,10 @@ public function findAset($criteria){
     $this->getConnection();
     //buat query untuk select all
     // $sql = "SELECT * FROM user WHERE $field like :searchvalue ";
-    $sql = "SELECT * FROM t_aset LEFT JOIN r_validasi ON r_validasi.id_validasi=t_aset.id_validasi WHERE LEFT(t_aset.kode_barang,1)='3' AND ($searchQuery)";
+    $sql = "SELECT * FROM t_aset 
+            LEFT JOIN t_rn_detail ON t_rn_detail.id_aset=t_aset.id_aset
+            LEFT JOIN r_validasi ON r_validasi.id_validasi=t_aset.id_validasi
+            WHERE LEFT(t_aset.kode_barang,1)='3' AND ($searchQuery)";
     
     //jika ada parameter sort
     // array('field'=>array('NIK','nama'),'searchvalue'=>'3434','sort'=>'nama DESC')
@@ -151,7 +177,10 @@ public function findAset($criteria){
     $asets = array();
     foreach($result as $r){
         //buat object user untuk tiap row data
-        $aset = new Aset($r['id_aset'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],$r['status_validasi']);
+        $aset = new Aset($r['id_aset'],$r['kode_barang'],$r['nama_barang'],$r['nup'],$r['kode_unit'],
+                         $r['status_validasi'],
+                         $r['alamat'],$r['lat_long'],$r['status_penggunaan'],$r['kondisi'],$r['luas_rn']
+                        );
         //simpan dalam array of user
         $asets[] = $aset;
     }

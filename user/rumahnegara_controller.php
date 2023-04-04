@@ -17,9 +17,6 @@ class AsetController{
             case 'index':
                 $this->index();
                 break;
-            case 'delete':
-                $this->delete();
-                break;
             case 'update':
                 $this->update();
                 break;
@@ -37,7 +34,9 @@ class AsetController{
         // $users = $this->model->getAllUser();
         // $users = $this->model->findUser(array('field'=>'nama','searchvalue'=>"%$paramCari%"));
         $criteria = array(
-            'field'=>array('id_aset','kode_barang','nama_barang','nup','kode_unit','status_validasi'),
+            'field'=>array('t_aset.id_aset','kode_barang','nama_barang','nup','kode_unit',
+                           'r_validasi.status_validasi'
+                           ,'alamat','lat_long','status_penggunaan','kondisi'),
             'searchvalue'=>"%$paramCari%",
             // 'sort' => 'nama DESC'
         );
@@ -60,37 +59,38 @@ class AsetController{
     }
 
     //action delete
-    public function delete(){
-        //baca id yang mau di delete
-        $id_delete = $_GET['id_aset'];
-        $status = $this->model->deleteAset($id_delete);
-        if($status){
-            // header('location:user_controller.php');
-            URL_Helper::redirect('user/aset_controller','index',null);
-        }
-    }
+
 
     //action update
     public function update(){
         //baca parameter id user yang akan diupdate
         $id_diupdate = $_GET['id_aset'];
         //get user berdasarkan id
-        $aset = $this->model->updateAset($id_diupdate);
-        // if($aset==null){
-        //     echo 'aset not found';
-        // }else{
-        //      //cek apakah menampilkan form atau proses form
-        //     if(isset($_POST['submit_update'])){
-        //         //proses data
-        //         $aset_baru = new Aset('',$_POST['kode_barang'],$_POST['nama_barang'],$_POST['nup'],$_POST['kode_unit']);
-        //         //panggil fungsi updateuser
-        //         $this->model->updateAset($id_diupdate,$aset_baru);
-        //         // header('location:user_controller.php');
-        //         URL_Helper::redirect('user/rumahnegara_controller','index',null);
-        //     }else{
-        //         $this->loadView('view/form_update_rumahnegara',array('aset'=>$aset),'Ubah Rumah Negara');
-        //     }
-        // }
+        $aset = $this->model->getAsetById($id_diupdate);
+        if($aset==null){
+            echo 'aset not found';
+        }else{
+             //cek apakah menampilkan form atau proses form
+            if(isset($_POST['submit_valid'])){
+                //proses data
+                $validasi_baru = new Aset($_POST['id_aset'],$_POST['kode_barang'],$_POST['nama_barang'],$_POST['nup'],$_POST['kode_unit'],
+                                          $_POST['status_validasi'],
+                                          $_POST['alamat'],$_POST['lat_long'],$_POST['status_penggunaan'],$_POST['kondisi'],$_POST['luas_rn']
+                                        );
+                //panggil fungsi updateuser
+                $this->model->updateAset($id_diupdate,$validasi_baru);
+                $pesan = 'Data berhasil diupdate';
+                 // display the message in an alert box
+                echo "<script>alert('$pesan');</script>";
+                // header('location:user_controller.php');
+                URL_Helper::redirect('user/rumahnegara_controller','index',null);
+            }else{
+                URL_Helper::redirect('user/rumahnegara_controller','index',null);
+                //siapkan untuk kirim ke ui pesan berhasil
+                //$pesan = 'Data berhasil diupdate';
+                // $this->loadView('view/form_update_rumahnegara',array('aset'=>$aset),'Ubah Rumah Negara');
+            }
+        }
 
     }
 
