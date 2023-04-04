@@ -1,16 +1,16 @@
 <?php
 //nama database
-$dbname = "rune";
+$dbname = "kelompok5";
 //user database
-$dbuser = 'root';
+$dbuser = 'userkelompok5';
 //password database
-$dbpass = '';
+$dbpass = 'passkelompok5';
 //host database
 $dbhost = 'localhost';
 //base url
 //$base_url = "http://localhost/rumah_negara/rune/";
 //$base_url = "";
-$base_url = "../rune/";
+$base_url = "../rune-main/";
 
 $_ENV['DEV'] = getenv('DEV');
 
