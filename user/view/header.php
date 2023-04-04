@@ -9,14 +9,14 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../rune/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../rune-main/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../rune/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../rune-main/dist/css/adminlte.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="../rune/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../rune/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../rune/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-  <link rel="stylesheet" href="../rune/plugins/sweetalert2.min.css">
+  <link rel="stylesheet" href="../rune-main/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../rune-main/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../rune-main/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="../rune-main/plugins/sweetalert2.min.css">
 
 </head>
 
@@ -65,7 +65,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-   <?php $hosting = "../rune/"?>
+   <?php $hosting = "../rune-main/"?>
 
 
       <!-- Sidebar -->

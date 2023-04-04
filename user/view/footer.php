@@ -11,26 +11,26 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../rune/plugins/jquery/jquery.min.js"></script>
+<script src="../rune-main/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../rune/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../rune-main/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../rune/plugins/sweetalert2.all.min.js"></script>
-<script src="../rune/dist/js/adminlte.min.js"></script>
+<script src="../rune-main/plugins/sweetalert2.all.min.js"></script>
+<script src="../rune-main/dist/js/adminlte.min.js"></script>
 <!-- DataTables  & Plugins -->
-<script src="../rune/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../rune/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../rune/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../rune/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../rune/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../rune/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../rune/plugins/jszip/jszip.min.js"></script>
-<script src="../rune/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="../rune/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="../rune/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../rune/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../rune/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- Page specific script -->
+<script src="../rune-main/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../rune-main/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../rune-main/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../rune-main/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../rune-main/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../rune-main/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../rune-main/plugins/jszip/jszip.min.js"></script>
+<script src="../rune-main/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../rune-main/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../rune-main/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../rune-main/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../rune-main/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Page specifrune-maincript -->
 <script>
   $(function () {
     $("#example1").DataTable({
