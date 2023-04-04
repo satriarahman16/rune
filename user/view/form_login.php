@@ -27,13 +27,13 @@
     <h1>Login RUNE</h1>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">NIP</label>
-        <input type="text" class="form-control" name="nip"  placeholder="NIP" value="" >
+        <label for="exampleInputEmail1">NIP *</label>
+        <input type="text" class="form-control" name="nip"  placeholder="NIP" value="" required="required">
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Password</label>
-        <input type="password" class="form-control" name="password"  placeholder="password" value="">
+        <label for="exampleInputEmail1">Password *</label>
+        <input type="password" class="form-control" name="password"  placeholder="password" value="" required="required">
       </div>
 
       <div class="card-footer">
@@ -50,7 +50,6 @@
   </div>
       
   <?php
-    $error = $_GET['error'];
     
     if (isset($error) && $error) {
         $message = "NIP atau Password Salah";

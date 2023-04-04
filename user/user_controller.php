@@ -80,8 +80,6 @@ class UserController{
         $nip = $_POST['nip'];
         $password = $_POST['password'];
         $result = $this->model->getUserByNipPassword($nip, $password);
-        
-     
       
         if ($result) {
             // echo "login berhasil";
@@ -90,7 +88,7 @@ class UserController{
             // URL_Helper::redirect('user/view/form_update','index',null);
             //$this->loadView('view/form_login','','');
             // Jika login gagal, tampilkan pesan error
-            URL_Helper::redirect('user/view/form_login','',array('error'=>TRUE));
+            $this->loadView('view/form_login',array('error' => TRUE), null, false);
             // $message = "User atau Password Salah";
             // echo $message;
             // header('Refresh: 2; url=http://localhost/rumah_negara/rune/');
@@ -212,7 +210,7 @@ class UserController{
     }
 
     //fungsi untuk load tampilan
-    private function loadView($file,$data,$halaman){
+    private function loadView($file,$data,$halaman,$full = true){
         foreach($data as $key => $value){
             //membuat variable yang namanya adalah index dari elemen $data
             $$key = $value;
@@ -220,10 +218,14 @@ class UserController{
         $namaModule = 'User';
         $linkModule = 'home';
 
-        include BASE_PATH.'/user/view/header.php';
+        if ($full) {
+            include BASE_PATH.'/user/view/header.php';
+        }
         // include BASE_PATH.'/user/view/ui_user.php';
         include BASE_PATH.'/user/'.$file.'.php';
-        include BASE_PATH.'/user/view/footer.php';
+        if ($full) {
+            include BASE_PATH.'/user/view/footer.php';
+        }
     }
 
     public function cobalogin($nip, $password){
