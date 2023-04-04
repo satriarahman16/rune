@@ -20,7 +20,7 @@
 
       <div class="form-group">
         <label for="exampleInputEmail1">NIP</label>
-        <input type="text" class="form-control" name="nip" placeholder="NIP" value="<?php echo $user->nip?>">
+        <input type="text" class="form-control" name="nip" placeholder="NIP" readonly value="<?php echo $user->nip?>">
       </div>
 
       <div class="form-group">

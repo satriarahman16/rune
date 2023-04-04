@@ -79,7 +79,7 @@ class ModelUser{
             //buat objek koneksi
             $this->getConnection();
             //sql
-            $sql = "UPDATE r_user SET nip=:nip, nama=:nama, peran=:peran, kode_unit=:kode_unit, password=:pwd WHERE nip=:nip";
+            $sql = "UPDATE r_user SET nama=:nama, peran=:peran, kode_unit=:kode_unit, password=:pwd WHERE nip=:nip";
             //prepared stattemnet
             $stmt = $this->conn->prepare($sql);
             //bind param
